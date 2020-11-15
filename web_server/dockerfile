@@ -1,0 +1,20 @@
+# pull official base image
+FROM python:3.8.1-slim-buster
+RUN apt-get update && apt-get install -y git
+RUN apt-get update; apt-get install -y curl 
+RUN curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+# set work directory
+WORKDIR /usr/src/app
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt /usr/src/app/requirements.txt
+RUN pip install -r requirements.txt
+
+# copy project
+COPY . /usr/src/app/

@@ -1,0 +1,7 @@
+{
+    "CICDTest":{
+        "RepoLink":"https://github.com/Positev/CICD-Tutorial.git",
+        "ComposePath":"docker-compose.yml",
+        "EnvPath":""
+    }
+}

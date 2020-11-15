@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  api:
+    build: 
+        context: ./web_server
+        dockerfile: dockerfile
+    command: gunicorn --bind 0.0.0.0:5000 app:app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./ClonedRepos:/usr/src/app/ClonedRepos
+      - ./Config:/usr/src/app/Config
+      - /var/run/docker.sock:/var/run/docker.sock
